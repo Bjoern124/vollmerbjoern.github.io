@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            border: 1.5pt solid #B0E1EB;
+			border-radius: 65px; 
+            padding: 40px 50px;
+			margin-top: 15px;
+			margin-left: 0px; 
+			margin-right: 0px;
+        }
+		.logo {
+            width: 118px;
+            height: 50px;
+			position: relative;
+			top: 5px;
+}
+		.logo-img {
+			width: 100%;
+			height: 100%;
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		.logo-img.hover-image {
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.logo:hover .logo-img {
+			opacity: 0;
+		}
+
+		.logo:hover .logo-img.hover-image {
+			opacity: 1;
+		}
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+			position: relative;
+			right: 90px;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            text-decoration: none;
+			font-size: 15pt;
+			margin-right:20pt;
+        }
+		
+.hamburger-container {
+    position: fixed;
+    top: 44px;
+    right: 7%;
+    width: 70px; /* Size of the circle */
+    height: 70px; /* Size of the circle */
+    background-color: #B0E1EB; /* Color of the circle */
+    border-radius: 50%; /* Makes the container round */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: fixed;
+    z-index: 1000;
+}
+
+.bar {
+    width: 30px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 5px;
+    transition: all 0.3s;
+	    user-select: none; /* Prevents text selection */
+}
+
+.hamburger-menu div {
+    height: 3px;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 500px;
+            height: 100%;
+            background-color: #000;
+            border-left: 0.2pt solid #B0E1EB;
+            border-radius: 10px 0 0 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 40pt;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .sidebar a span {
+            display: inline-block;
+            color: inherit; /* Ensure spans inherit the default color */
+            transition: color 0.3s ease-in-out;
+        }
+
+        .sidebar a:hover span {
+            animation: colorShift 1s infinite;
+        }
+
+        @keyframes colorShift {
+            0%, 100% {
+                color: #fff;
+            }
+            50% {
+                color: #B0E1EB;
+            }
+        }
+
+.hamburger.menu-open .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.menu-open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.menu-open .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
+        body {
+            background-color: #0b0b0b;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+
+        }
+
+        .header {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+			margin-top: 150px;
+			margin-bottom: 220px;
+			
+        }
+
+        .header img {
+            max-width: 140%;
+            max-height: 140%;
+
+        }
+
+.about-section {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1.5pt solid #B0E1EB;
+    border-radius: 120px;
+    background-color: #000;
+	margin-top: 300px;
+	padding: 100px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.content { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+}
+
+.profile-image {
+    width: 20%;
+	max-width: 500px;
+    height: auto;
+    border-radius: 57%;
+	margin-top: 190px;
+	position: absolute;
+	right:10%;
+}
+
+
+        .about-section h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40pt;
+            font-weight: 600;
+            margin-bottom: -20pt;
+        } 
+
+        .about-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+			font-weight: 100;
+            margin-bottom: 10pt;
+        }
+
+        .about-section p {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+            font-weight: 300;
+            line-height: 1.6;
+			max-width: 65%; /* Set the maximum width for the text */
+			word-wrap: break-word; /* Force the text to break within words if necessary */
+        }
+
+.skills-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+	margin-bottom: 60px;
+}
+
+.skills-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200%; /* Make it twice as wide to allow for continuous scrolling */
+    animation: scrollSkills 10s linear infinite;
+}
+
+.skill-img {
+    width: 80px; /* Adjust the size of the skill images */
+    height: 80px;
+    border-radius: 50%; /* Make the images round */
+    margin: 0 5px; /* Adjust the spacing between images */
+	margin-left: 80pt
+}
+
+.skill-imgdark {
+    width: 80px; /* Adjust the size of the skill images */
+    height: 80px;
+    border-radius: 50%; /* Make the images round */
+    margin: 0 5px; /* Adjust the spacing between images */
+	background-color: #FFF;
+	margin-left: 80pt
+}
+
+@keyframes scrollSkills {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+
+
+        .projects-section {
+            margin: 20px 0;
+        }
+
+        .projects-section h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40pt;
+            font-weight: 600;
+            margin-bottom: -20pt;
+			margin-left: 78pt;
+			margin-top: 90pt;
+        }
+
+        .projects-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+            font-weight: 100;
+            margin-bottom: 200pt;
+			margin-left: 78pt;
+        }
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 300px;
+    position: relative;
+}
+ 
+
+
+
+.description {
+    position: absolute;
+    bottom: -110px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    transform:scale(0.8);
+}
+
+.gallery-item.active .description {
+    opacity: 1;
+    transform:scale(1);
+}
+
+.name {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 -170px;
+}
+ .date {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 -170px;
+}
+		.gallery-item {
+			width: 100%;
+			max-width: 800px;
+			position: relative;
+			transition: transform 0.5s ease, opacity 0.5s ease, margin 0.5s ease;
+			opacity: 1;
+			cursor: url('https://i.ibb.co/zJrLn4t/Cursor.png'), auto; /* Add auto as fallback */
+		}
+
+        .gallery-item.active {
+            margin-bottom: 100px;
+
+        }
+
+        .gallery-item img {
+            width: 100%;
+            transition: transform 1s ease;
+			
+
+        }
+
+        .gallery-item img.gif {
+            display: none;
+            width: 100%;
+            transition: transform 1s ease;
+			margin-bottom: 4px;
+        }
+
+        .gallery-item:hover img.static {
+            display: none;
+			
+        }
+
+        .gallery-item:hover img.gif {
+            display: block;
+			
+
+        }
+
+        .gallery-item.active img {
+            transform: scale(1.4);
+            opacity: 1;
+            z-index: 1;
+        }
+
+.hello-section {
+    position: relative;
+    overflow: hidden; /* Prevents the image from being visible outside the frame */
+    border: 1.5pt solid #B0E1EB;
+    border-radius: 80px;
+    padding: 100px;
+    margin: 20px 0;
+    background: url('https://i.ibb.co/tpZL9y1/ArtNew.png') no-repeat center center; /* Background image */
+    background-size: cover; /* Makes the image cover the entire section */
+    transition: background-position 4s ease; /* Smooth transition for scroll effect */
+}
+
+		.hello-section .image-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1; /* Positioniert das Bild hinter dem Text */
+		}
+
+		.hello-section .image-container img {
+			width: 200%; /* Macht das Bild größer als den Rahmen */
+			height: auto;
+			transform: translateX(-10%) translateY(90%); /* Moves the image left and down */
+			transition: transform 4s ease; /* Glättet die Übergänge */
+			opacity: 0.8;
+		}
+		.hello-section.scrolled {
+    background-position: center top; /* Adjusts the position when scrolled */
+}
+
+		.hello-section.scrolled .image-container img {
+			transform: translateX(50%) translateY(-25%); /* Moves the image right and up when scrolled */
+		}
+
+.hello-content {
+    position: relative;
+    z-index: 1; /* Positions the text over the image */
+}
+
+
+        .hello-section h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40pt;
+            font-weight: 600;
+            margin-bottom: -20pt;
+        }
+
+        .hello-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+			font-weight: 100;
+            margin-bottom: 10pt;
+        }
+
+        .hello-section p {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+			margin-left: 62pt;
+			margin-right: 62pt;
+        }
+
+        .contact-section h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40pt;
+            font-weight: 600;
+            margin-bottom: -20pt;
+			margin-top: 100pt;
+        }
+
+        .contact-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+            font-weight: 100;
+            margin-bottom: 50pt;
+        }
+
+
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .contact-section label {
+            font-family: 'Inter', sans-serif;
+            font-size: 25pt;
+            font-weight: 600;
+            margin-bottom: 0pt;
+            color: #fff;
+        }
+	
+.contact-section img {
+    position: absolute;
+    left: 75%;
+    width: 300pt;
+    height: 300pt;
+    z-index: -1;
+}
+
+        .contact-section input,
+        .contact-section textarea {
+            background-color: #000000;
+            border: 0.2pt solid #B0E1EB;
+            border-radius: 30px;
+            padding: 10px;
+            margin-bottom: 30pt;
+			margin-top: 5pt;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 12pt;
+        }
+
+        .contact-section button {
+            background-color: #B0E1EB;
+            color: #0b0b0b;
+            border: none;
+            border-radius: 30px;
+            padding: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+            cursor: pointer;
+			font-weight: 800;
+			max-width: 200px;
+			margin-top: 30pt;
+			margin-bottom: 400pt;
+        }
+		        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+            display: none;
+            z-index: 3000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+.overlay-content {
+    background: #000;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left; /* Align text to the left */
+    margin: 50px auto;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1.5pt solid #B0E1EB;
+	border-radius: 110px;
+}
+
+        .overlay-content img {
+            width: 60%;
+    margin: 80px auto; /* Add margin for spacing between images */
+    display: block; /* Center the image */
+			
+        }
+
+        .overlay-content h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 80pt;
+            font-weight: 600;
+            margin-bottom: -60pt;
+			margin-left: 20%;
+			margin-right: 20%;
+			margin-top: 90pt;
+        }
+		        .overlay-content h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+            font-weight: 100;
+            margin-bottom: 30pt;
+			margin-left: 20%;
+			margin-right: 20%;
+			color:#B0E1EB;
+        }
+		        .overlay-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 20pt;
+            font-weight: 300;
+            line-height: 1.6;
+			margin-left: 20%;
+			margin-right: 20%;
+        }
+		
+		.overlay-content img:last-child {
+    margin-bottom: 200px; /* Add extra space below the last image */
+}
+		.close-btn {
+			position: fixed;
+			top: 4%;
+			right: -17%;
+			background: none; /* Remove background color */
+			border: none; /* Remove border */
+			padding: 0; /* Remove padding */
+			cursor: pointer;
+			z-index: 3;
+			height: 10%; /* Set the height of the image */
+			width: auto; /* Maintain aspect ratio */
+			object-fit: contain; /* Ensure the image fits within the container */
+		}
+		
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Optional: To center vertically in the viewport */
+			margin-bottom: -50px;
+			margin-top: -50px;
+        }
+
+        .video-container iframe {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+<div class="hamburger-container">
+    <div class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div>
+<div class="sidebar" id="sidebar">
+    <a href="#about-me">ABOUT_ME</a>
+    <a href="#projects">PROJECTS</a>
+    <a href="#contact">CONTACT</a>
+</div>
+			<div class="logo">
+				<img src="https://i.ibb.co/6vLdCXx/Logo-Website.png" alt="Logo" class="logo-img">
+				<img src="https://i.ibb.co/QJhPwB6/Logo-Website-Wink.png" alt="Hover Logo" class="logo-img hover-image">
+			</div>
+
+            <div class="nav-links">
+                <a href="#about-me">ABOUT ME</a>
+                <a href="#projects">PROJECTS</a>
+                <a href="#contact">CONTACT</a>
+            </div>
+            <div class="sidebar">
+                <a href="#about-me">ABOUT ME</a>
+                <a href="#projects">PROJECTS</a>
+                <a href="#contact">CONTACT</a>
+            </div>
+        </div>
+        <div class="header">
+            <img src="https://i.ibb.co/55ndTzj/Name-Gif-optimized-20fps.gif" alt="Header Image">
+        </div>
+		<div class="hello-section">
+			<div class="image-container">
+				<img src="https://i.ibb.co/tpZL9y1/ArtNew.png" alt="Background Image">
+			</div>
+			<div class="hello-content">
+				<h2>HELLO</h2>
+				<h3>How's it going</h3>
+				<p>I'm a passionate 3D artist dedicated to creating immersive stories. Explore my work, from detailed models to engaging game environments, crafted with a blend of creativity and precision. With experience in game design and a degree in virtual design, I transform ideas into visual masterpieces. I personally developed this website to showcase my journey. Dive in and enjoy the creative experience.</div>
+		</div>
+        <div id="projects" class="projects-section">
+            <h2>MY PROJECTS</h2>
+            <h3>Some stuff by me</h3>
+        </div>
+        <div class="gallery">
+    <div class="gallery-item" onclick="showOverlay(event, 1)">
+        <img src="https://i.ibb.co/3B1xvfY/Schnecke-Neu.png" alt="Image 1" class="static">
+        <img src="https://i.ibb.co/c6hvYhY/Komp-3-9.gif" alt="GIF 1" class="gif">
+        <div class="description">
+            <span class="name">ENDLESS ENGINE'S SUBMISSION</span>
+            <span class="date">2023</span>
+        </div>
+    </div>
+    <div class="gallery-item" onclick="showOverlay(event, 2)">
+        <img src="https://i.ibb.co/cgJj3pN/Roboter-Neu.png" alt="Image 2" class="static">
+        <img src="https://i.ibb.co/9ZJNJ1K/67c113aa-18c8-4c7e-aaf4-77a6bf2ae6d4-rw-1920.gif" alt="GIF 2" class="gif">
+        <div class="description">
+            <span class="name">3D ROBOTS</span>
+            <span class="date">2023</span>
+        </div>
+    </div>
+    <div class="gallery-item" onclick="showOverlay(event, 3)">
+        <img src="https://i.ibb.co/Y37Y0YM/Alb3.png" alt="Image 3" class="static">
+        <img src="https://i.ibb.co/pWcftC0/Alb-Gif2-2.gif" alt="GIF 3" class="gif">
+        <div class="description">
+            <span class="name">"ALB" CONCEPT ART</span>
+            <span class="date">2023</span>
+        </div>
+    </div>
+    <div class="gallery-item" onclick="showOverlay(event, 4)">
+        <img src="https://i.ibb.co/z6QrwtD/Picture-1.png" alt="Image 4" class="static">
+        <img src="https://i.ibb.co/zGTkcMW/Komp1-ezgif-com-optimize-1.gif" alt="GIF 4" class="gif">
+        <div class="description">
+            <span class="name">#WALD</span>
+            <span class="date">2022</span>
+        </div>
+    </div>
+	    <div class="gallery-item" onclick="showOverlay(event, 5)">
+        <img src="https://i.ibb.co/7C8L37z/Dance1.png" alt="Image 5" class="static">
+        <img src="https://i.ibb.co/RjxqRfZ/Komp-1-Dance-1.gif" alt="GIF 5" class="gif">
+        <div class="description">
+            <span class="name">VR DANCE</span>
+            <span class="date">2022</span>
+        </div>
+    </div>
+	    <div class="gallery-item" onclick="showOverlay(event, 6)">
+        <img src="https://i.ibb.co/ZMzBXHb/Relaxation3.png" alt="Image 6" class="static">
+        <img src="https://i.ibb.co/Zgc4Jkm/media.gif" alt="GIF 6" class="gif">
+        <div class="description">
+            <span class="name">VR THERAPY</span>
+            <span class="date">2022</span>
+        </div>
+    </div>
+</div>
+
+<div id="about-me" class="about-section">
+    <div class="content">
+        <h2>ABOUT ME</h2>
+        <h3>In case you care</h3>
+        <p>A passionate 3D Artist specializing in creating immersive and interactive experiences. With a Bachelor's Degree in Virtual Design from the University of Applied Science in Kaiserslautern.<br><br> Throughout my academic journey, I had the privilege of working on diverse gaming and VR projects, both in collaboration with my university and through external commissions. These experiences have allowed me to refine my skills in crafting captivating worlds that engage and thrill players.<br><br> I thrive on the excitement of exploring new possibilities and pushing the boundaries of my technical and aesthetic abilities. Continuously seeking opportunities to expand my knowledge and expertise, I am committed to honing my craft and staying at the forefront of industry trends.<br><br><br></p>
+    <img src="https://i.ibb.co/7GhB9QF/Profilepicture.png" alt="Profile Image" class="profile-image">   
+   </div>
+
+<div class="skills-slider">
+    <div class="skills-wrapper">
+        <img src="https://i.ibb.co/LN9GNt4/Substance-Painter-Logo.png" alt="Skill 1" class="skill-img">
+        <img src="https://i.ibb.co/hHbHjRX/Photoshop-Logo.png" alt="Skill 2" class="skill-img">
+        <img src="https://i.ibb.co/6mwQ1k3/In-Design-Logo.png" alt="Skill 3" class="skill-img">
+        <img src="https://i.ibb.co/F8NfG7F/Illustrator-Logo-Logo.png" alt="Skill 4" class="skill-img">
+        <img src="https://i.ibb.co/GCMzwqC/htmlLogo.png" alt="Skill 5" class="skill-img">
+        <img src="https://i.ibb.co/7y96p8h/GitLogo.png" alt="Skill 6" class="skill-img">
+        <img src="https://i.ibb.co/1XFX3nv/c-Logo.png" alt="Skill 7" class="skill-img">
+        <img src="https://i.ibb.co/wyNHFzs/Blender-Logo.png" alt="Skill 8" class="skill-img">
+		<img src="https://i.ibb.co/q7Rxj5F/3dsmax-Logo.png" alt="Skill 9" class="skill-img">
+        <img src="https://i.ibb.co/C0zQB1b/z-Brush-Logo.png" alt="Skill 10" class="skill-imgdark">
+        <img src="https://i.ibb.co/pRz7r3k/V-ray-Logo.png" alt="Skill 11" class="skill-imgdark">
+        <img src="https://i.ibb.co/PGBHSk6/Unreal-Engine-Logo.png" alt="Skill 12" class="skill-imgdark">
+        <img src="https://i.ibb.co/CP9FB1m/Unity-Logo.png" alt="Skill 13" class="skill-imgdark">
+		
+		        <img src="https://i.ibb.co/LN9GNt4/Substance-Painter-Logo.png" alt="Skill 1" class="skill-img">
+        <img src="https://i.ibb.co/hHbHjRX/Photoshop-Logo.png" alt="Skill 2" class="skill-img">
+        <img src="https://i.ibb.co/6mwQ1k3/In-Design-Logo.png" alt="Skill 3" class="skill-img">
+        <img src="https://i.ibb.co/F8NfG7F/Illustrator-Logo-Logo.png" alt="Skill 4" class="skill-img">
+        <img src="https://i.ibb.co/GCMzwqC/htmlLogo.png" alt="Skill 5" class="skill-img">
+        <img src="https://i.ibb.co/7y96p8h/GitLogo.png" alt="Skill 6" class="skill-img">
+        <img src="https://i.ibb.co/1XFX3nv/c-Logo.png" alt="Skill 7" class="skill-img">
+        <img src="https://i.ibb.co/wyNHFzs/Blender-Logo.png" alt="Skill 8" class="skill-img">
+		<img src="https://i.ibb.co/q7Rxj5F/3dsmax-Logo.png" alt="Skill 9" class="skill-img">
+        <img src="https://i.ibb.co/C0zQB1b/z-Brush-Logo.png" alt="Skill 10" class="skill-imgdark">
+        <img src="https://i.ibb.co/pRz7r3k/V-ray-Logo.png" alt="Skill 11" class="skill-imgdark">
+        <img src="https://i.ibb.co/PGBHSk6/Unreal-Engine-Logo.png" alt="Skill 12" class="skill-imgdark">
+        <img src="https://i.ibb.co/CP9FB1m/Unity-Logo.png" alt="Skill 13" class="skill-imgdark">
+    </div>
+</div>
+</div>
+        <div id="contact" class="contact-section">
+            <h2>CONTACT</h2>
+            <h3>Get in touch</h3>
+			
+<form id="contact-form" action="mailto:youremail@example.com" method="POST" enctype="text/plain">
+            <img src="https://i.ibb.co/0cXp2Rc/diamond.png" alt="Contact Image">
+    <label for="name">Name:</label>
+	
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Send</button>
+</form>
+
+        </div>
+    </div>
+
+    <!-- Overlays for projects -->
+    <div class="overlay" id="overlay-1">
+        <div class="overlay-content">
+            <img src="https://i.ibb.co/47Lz9r2/Close-Button.png" class="close-btn" onclick="hideOverlay(1)" alt="Close">
+            <h3>SNAIL</h3>
+            <h4>Endless Engine Submission</h4>
+            <p>Here is my entry for the Endless Engine Challenge hosted by pwnisher.
+I used zBrush to sculpt the snail and used the exported displacement map to create a texture gradient in Substance Painter. As for the car, I wanted to embrace a sustainable approach, so I hand-modeled and textured reclaimed materials.
+To add to the atmosphere, I used the Grasswald asset to add natural looking grass to the background. I rigged, skinned and animated the snail and the character. I decided against the character in the final render because it did not feel right. My inspiration came from the film "The Secret World of Arriet" and I wanted to capture some of that magical essence in my creation.</p>
+            <img src="https://i.ibb.co/3B1xvfY/Schnecke-Neu.png" alt="Project 01 Image 2">
+			<img src="https://i.ibb.co/tJNs2xw/Test-Renderings.gif" alt="Project 01 Image 1">
+            <img src="https://i.ibb.co/c6hvYhY/Komp-3-9.gif" alt="Project 01 Image 3">
+			<img src="https://i.ibb.co/r5sZ7Mg/Komp-1.gif" alt="Project 01 Image 4">
+            <img src="https://i.ibb.co/fYr7xvw/Komp.gif" alt="Project 01 Image 5">
+        </div>
+    </div>
+    <div class="overlay" id="overlay-2">
+        <div class="overlay-content">
+            <img src="https://i.ibb.co/47Lz9r2/Close-Button.png" class="close-btn" onclick="hideOverlay(2)" alt="Close">
+            <h3>ROBOTS</h3>
+            <h4>3D hard surface modeling</h4>
+            <p>This is a robot designed for an upcoming project and brought to life using Blender. The whole modelling process was done using hardsurface modelling. To further enhance its appearance, I created textures using Substance Painter.
+The design of the robot was influenced by several sources, including machined robots and an AI-generated image. The robot is set in a scene reminiscent of a wartime setting similar to the historical events of Omaha Beach, but with a twist of futuristic technology. 
+As part of the creative journey, I explored several concept robots that didn't make the final cut. Although they didn't make it to the forefront of the project, each one contributed to the evolution of the final design and enriched the creative process. Feel free to scroll down and see the ideas that went into this project.</p>
+            <img src="https://i.ibb.co/cgJj3pN/Roboter-Neu.png" alt="Project 02 Image 1">
+            <img src="https://i.ibb.co/9ZJNJ1K/67c113aa-18c8-4c7e-aaf4-77a6bf2ae6d4-rw-1920.gif" alt="Project 02 Image 2">
+            <img src="https://i.ibb.co/XkzZTpr/6cd5a3d7-3091-4cd7-b761-6addf91d958f-rw-1920-1.png" alt="Project 02 Image 3">
+			   <img src="https://i.ibb.co/cgJj3pN/Roboter-Neu.png" alt="Project 02 Image 4">
+            <img src="https://i.ibb.co/tL0Gwdf/8784b28a-4566-4be0-a7eb-a575ae18fd3b-rw-1920-1.png" alt="Project 02 Image 5">
+            <img src="https://i.ibb.co/mD6TwGd/Relaxation2.png" alt="Project 02 Image 6">
+            <img src="https://i.ibb.co/s919Yx8/Bot4.gif" alt="Project 02 Image 7">			
+        </div>
+    </div>
+    <div class="overlay" id="overlay-3">
+        <div class="overlay-content">
+            <img src="https://i.ibb.co/47Lz9r2/Close-Button.png" class="close-btn" onclick="hideOverlay(3)" alt="Close">
+            <h3>ALB</h3> 
+            <h4>Unrel Engine Game Concept</h4>
+            <p>This is a robot designed for an upcoming project and brought to life using Blender. The whole modelling process was done using hardsurface modelling. To further enhance its appearance, I created textures using Substance Painter.
+The design of the robot was influenced by several sources, including machined robots and an AI-generated image. The robot is set in a scene reminiscent of a wartime setting similar to the historical events of Omaha Beach, but with a twist of futuristic technology. 
+As part of the creative journey, I explored several concept robots that didn't make the final cut. Although they didn't make it to the forefront of the project, each one contributed to the evolution of the final design and enriched the creative process. Feel free to scroll down and see the ideas that went into this project.</p>
+            <img src="https://i.ibb.co/Y37Y0YM/Alb3.png" alt="Project 03 Image 1">
+            <img src="https://i.ibb.co/pWcftC0/Alb-Gif2-2.gif" alt="Project 03 Image 2">
+            <img src="https://i.ibb.co/ssKZd91/Alb4.png" alt="Project 03 Image 3">
+			<img src="https://i.ibb.co/Tr2nfrR/Alb2.png" alt="Project 03 Image 4">
+            <img src="https://i.ibb.co/80Sb6hQ/Alb1.png" alt="Project 03 Image 5">
+            <img src="https://i.ibb.co/XfBW27V/Alb5.png" alt="Project 03 Image 6">
+        </div>
+    </div>
+	    <div class="overlay" id="overlay-4">
+        <div class="overlay-content">
+            <img src="https://i.ibb.co/47Lz9r2/Close-Button.png" class="close-btn" onclick="hideOverlay(4)" alt="Close">
+            <h3>#WALD</h3>
+            <h4>VR Palatinate Forest experience</h4>
+            <p>#Wald - Zeitreise durch den Pfälzerwald (#Forest - Time travel through the Palatinate Forest) is a VR experience that was shown in the Theodor-Zink-Museum. We developed a multimedia production that brought the secrets of the Palatinate Forest to life. Using virtual reality, the city museum was transformed into a three-dimensional journey through the forest.</p>
+			<img src="https://i.ibb.co/z6QrwtD/Picture-1.png" alt="Project 03 Image 1">
+			<img src="https://i.ibb.co/zGTkcMW/Komp1-ezgif-com-optimize-1.gif" alt="Project 03 Image 2">
+			<img src="https://i.ibb.co/LJHwNFG/Unbenannt.gif" alt="Project 03 Image 3">
+			    <div class="video-container">
+        <iframe width="60%" height="60%" src="https://www.youtube.com/embed/F1Q5fXZChkU?si=zDj6EfG7jkkktdZF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+			    <div class="video-container">
+        <iframe width="60%" height="60%" src="https://www.youtube.com/embed/AE5sOYPN0hk?si=vhSPWR203tkKmsdD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+	        </div>
+    </div>
+
+		    <div class="overlay" id="overlay-5">
+        <div class="overlay-content">
+            <img src="https://i.ibb.co/47Lz9r2/Close-Button.png" class="close-btn" onclick="hideOverlay(5)" alt="Close">
+            <h3>VR DANCE</h3>
+            <h4>Motion Capture Dance in VR</h4>
+            <p>This project presents an immersive dance experience in virtual reality. To bring this vision to life, I recruited a professional dancer and captured her movements using motion capture technology. This data was seamlessly transferred to a character in Unreal Engine, creating an abstract representation of the dancer.
+Using the power of Niagara, modelling and materials, I integrated a range of dynamic effects to create a visually stunning scene. As the accompanying music sets the tone, the character and environment transform, taking the audience through different stages.
+The beauty of this project is its interactivity. Using virtual reality, viewers can actively participate and explore the dance from different angles, move around the scene and become fully immersed in the performance.</p>
+			<img src="https://i.ibb.co/7C8L37z/Dance1.png" alt="Project 04 Image 1">
+            <img src="https://i.ibb.co/RjxqRfZ/Komp-1-Dance-1.gif" alt="Project 04 Image 2">
+			<img src="https://i.ibb.co/Htfsqpz/dance5.png" alt="Project 04 Image 5">
+            <img src="https://i.ibb.co/JdLbvgC/Dance2.png" alt="Project 04 Image 3">
+			<img src="https://i.ibb.co/4JkL0nm/Dance3.png" alt="Project 04 Image 4">
+			
+        </div>
+    </div>
+		    <div class="overlay" id="overlay-6">
+        <div class="overlay-content">
+            <img src="https://i.ibb.co/47Lz9r2/Close-Button.png" class="close-btn" onclick="hideOverlay(6)" alt="Close">
+            <h3>VR THERAPY</h3>
+            <h4>VR Relaxation Room for Therapy</h4>
+            <p>In this project we integrated virtual reality with therapeutic techniques. Working with Madlen Barth, we developed two rooms, each centred around a light theme. As users immerse themselves in these spaces, we use electroencephalography (EEG) to measure their stress levels.
+The therapeutic journey unfolds through a series of relaxation steps designed to help users unwind and find serenity. As users progress through these steps, the rooms respond with dynamic changes, introducing rewarding elements to enhance the therapeutic experience. This fusion of virtual reality and therapy offers a unique and transformative way to manage stress and promote wellbeing.</p>
+            <img src="https://i.ibb.co/ZMzBXHb/Relaxation3.png" alt="Project 04 Image 1">
+            <img src="https://i.ibb.co/Zgc4Jkm/media.gif" alt="Project 04 Image 2">
+            <img src="https://i.ibb.co/tBqkD1R/Relaxation2.png" alt="Project 04 Image 3">
+			<img src="https://i.ibb.co/tXWkSNy/Relaxation1.png" alt="Project 04 Image 4">
+            <img src="https://i.ibb.co/YhycXRf/Relaxation6.png" alt="Project 04 Image 5">
+            <img src="https://i.ibb.co/zf9kCJ1/Relaxation4.png" alt="Project 04 Image 6">
+			<img src="https://i.ibb.co/8czkBXh/Relaxation5.png" alt="Project 04 Image 7">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('scroll', function() {
+            const items = document.querySelectorAll('.gallery-item');
+            const triggerHeight = window.innerHeight * 0.10;
+
+            let activeItemFound = false;
+
+            items.forEach(item => {
+                const itemRect = item.getBoundingClientRect();
+                const itemMidPoint = itemRect.top + itemRect.height / 2;
+
+                if (!activeItemFound && itemMidPoint < triggerHeight + window.innerHeight && itemMidPoint > triggerHeight) {
+                    item.classList.add('active');
+                    activeItemFound = true;
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+window.addEventListener('scroll', function() {
+    const helloSection = document.querySelector('.hello-section');
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 300) { // Adjust this value as needed
+        helloSection.classList.add('scrolled');
+    } else {
+        helloSection.classList.remove('scrolled');
+    }
+});
+
+
+function toggleMenu() {
+    const menu = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+    menu.classList.toggle('menu-open');
+    sidebar.classList.toggle('open');
+}
+
+document.getElementById('hamburger').addEventListener('click', toggleMenu);
+
+        function showOverlay(event, index) {
+            event.stopPropagation();
+            document.getElementById(`overlay-${index}`).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideOverlay(index) {
+            document.getElementById(`overlay-${index}`).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+		
+		    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        const mailtoLink = `mailto:vollmerbjoern@web.com?subject=Contact Form Submission&body=Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+        
+        window.location.href = mailtoLink;
+    });
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+            sidebarLinks.forEach(link => {
+                const text = link.textContent;
+                link.innerHTML = '';
+
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i];
+                    span.style.animationDelay = `${i * 0.1}s`; // delay each letter animation
+                    link.appendChild(span);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
