@@ -658,14 +658,20 @@
             max-width: 100%;
         }
 @media (max-width: 768px) {
-    .navbar {
+    .hamburger-container {
+    position: fixed;
+    top: 27px;
+    right: 19%;
+    width: 70px; /* Size of the circle */
+    height: 70px; /* Size of the circle */
+}
+.navbar {
         padding: 20px 25px;
-
     }
 
     .header {
-        margin-top: 40px; /* Smaller margins */
-        margin-bottom: 60px;
+        margin-top: 0px; /* Smaller margins */
+        margin-bottom: 0px;
     }
 
     .about-section {
@@ -687,11 +693,25 @@
 
     .about-section p {
         max-width: 100%;
+        font-size: 12pt; /* Smaller font size */
+        line-height: 1.4; /* Less line spacing */
+        margin-bottom: 0px; /* Less spacing after the text */
+    }
+
+    .about-section h2 {
+        margin-left: 0;
+        margin-top: 25pt;
+        font-size: 28pt; /* Smaller font size */
+    }
+
+    .about-section h3 {
+        margin-left: 0;
+        margin-bottom: 0px; /* Less spacing after the text */
         font-size: 14pt; /* Smaller font size */
     }
 
     .skills-slider {
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 30px;
     }
 
@@ -701,13 +721,14 @@
 
     .projects-section h2 {
         margin-left: 0;
-        font-size: 30pt;
+        font-size: 28pt; /* Smaller font size */
+        margin-top: 50pt;
     }
 
     .projects-section h3 {
         margin-left: 0;
-        font-size: 16pt;
-        margin-bottom: 100pt;
+        font-size: 14pt; /* Smaller font size */
+        margin-bottom: 50pt;
     }
 
     .contact-section img {
@@ -721,10 +742,13 @@
     .gallery-item {
         max-width: 90%; /* Smaller max width for images */
         transform: none; /* Remove sizing effect */
+        transition: none; /* Remove transition effect */
+		pointer-events: all; /* Initially disable pointer events */
     }
-	.gallery-item.active img {
-    transform: none;
-}
+
+    .gallery-item.active img {
+        transform: none;
+    }
 
     .description {
         display: none; /* Remove text under images */
@@ -732,14 +756,68 @@
 
     .hello-section {
         margin: 10px 0; /* Smaller margins */
+        border-radius: 60px; /* Reduced border radius */
+        margin-top: 0pt;
+        margin-bottom: 0pt;
     }
 
     .hello-section p {
+        font-size: 12pt; /* Smaller font size */
+        line-height: 1.4; /* Less line spacing */
+        margin-bottom: 20pt;
+    }
+
+    .hello-section h2 {
+        margin-left: 0;
+        font-size: 28pt; /* Smaller font size */
+        margin-top: 20pt;
+    }
+
+    .hello-section h3 {
+        margin-left: 0;
         font-size: 14pt; /* Smaller font size */
     }
 
     .nav-links {
         display: none; /* Remove top navigation */
+    }
+
+    .contact-section {
+        margin-left: 10px;
+        margin-right: 0px;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+        width: calc(100% - 40px); /* Make input fields wider */
+        margin: 10px 0; /* Adjust margin for spacing */
+    }
+
+    .contact-section button {
+        width: calc(100% - 40px); /* Make button wider */
+        margin-top: 20px; /* Adjust margin for spacing */
+        font-size: 12pt;
+        cursor: pointer;
+        font-weight: 800;
+        max-width: 200px;
+        margin-top: 30pt;
+        margin-bottom: 200pt;
+    }
+
+    .contact-section h2 {
+        font-size: 28pt;
+        margin-bottom: -20pt;
+        margin-top: 50pt;
+    }
+
+    .contact-section h3 {
+        font-size: 14pt;
+        margin-bottom: 20pt;
+        color: #B0E1EB;
+    }
+
+    .contact-section label {
+        font-size: 20pt;
     }
 
     .overlay-content {
@@ -758,15 +836,15 @@
 
     .overlay-content img {
         width: 80%;
-        margin: 30px auto; /* Add margin for spacing between images */
+        margin: 10px auto; /* Add margin for spacing between images */
         display: block; /* Center the image */
     }
 
     .overlay-content h3 {
         font-family: 'Outfit', sans-serif;
-        font-size: 40pt;
+        font-size: 28pt; /* Smaller font size */
         font-weight: 600;
-        margin-bottom: -30pt;
+        margin-bottom: -40pt;
         margin-left: 10%;
         margin-right: 20%;
         margin-top: 90pt;
@@ -774,9 +852,9 @@
 
     .overlay-content h4 {
         font-family: 'Inter', sans-serif;
-        font-size: 16pt;
+        font-size: 14pt; /* Smaller font size */
         font-weight: 100;
-        margin-bottom: 30pt;
+        margin-bottom: 10pt;
         margin-left: 10%;
         margin-right: 10%;
         color: #B0E1EB;
@@ -784,17 +862,28 @@
 
     .overlay-content p {
         font-family: 'Inter', sans-serif;
-        font-size: 14pt;
+        font-size: 12pt; /* Smaller font size */
         font-weight: 300;
-        line-height: 1.6;
+        line-height: 1.4; /* Less line spacing */
         margin-left: 10%;
         margin-right: 10%;
+		 margin-top: 0pt;
+		 margin-bottom: 20pt;
     }
 
     .overlay-content img:last-child {
         margin-bottom: 200px; /* Add extra space below the last image */
     }
+			.close-btn {
+			position: fixed;
+			top: 10%;
+			right: -20%;
+			height: 6%; /* Set the height of the image */
+			width: auto; /* Maintain aspect ratio */
+		}
 }
+
+
     </style>
 </head>
 <body>
@@ -1060,7 +1149,13 @@ The therapeutic journey unfolds through a series of relaxation steps designed to
     <script>
 document.addEventListener('scroll', function() {
     const items = document.querySelectorAll('.gallery-item');
-    const triggerHeight = window.innerHeight * 0.10;
+    let triggerHeight;
+
+    if (window.innerWidth <= 768) {
+        triggerHeight = window.innerHeight * 0.85; // Increase this value for mobile
+    } else {
+        triggerHeight = window.innerHeight * 0.10;
+    }
 
     let activeItemFound = false;
 
@@ -1068,18 +1163,29 @@ document.addEventListener('scroll', function() {
         const itemRect = item.getBoundingClientRect();
         const itemMidPoint = itemRect.top + itemRect.height / 2;
 
-        if (!activeItemFound && itemMidPoint < triggerHeight + window.innerHeight && itemMidPoint > triggerHeight) {
-            item.classList.add('active');
-            setTimeout(() => {
-                item.style.pointerEvents = 'auto'; // Enable pointer events after the transition
-            }, 500); // 500ms delay (same as CSS transition duration)
-            activeItemFound = true;
+        if (window.innerWidth <= 768) {
+            item.style.pointerEvents = 'auto'; // Always enable pointer events on mobile
+            if (!activeItemFound && itemMidPoint < triggerHeight + window.innerHeight && itemMidPoint > triggerHeight) {
+                item.classList.add('active');
+                activeItemFound = true;
+            } else {
+                item.classList.remove('active');
+            }
         } else {
-            item.classList.remove('active');
-            item.style.pointerEvents = 'none'; // Disable pointer events during the transition
+            if (!activeItemFound && itemMidPoint < triggerHeight + window.innerHeight && itemMidPoint > triggerHeight) {
+                item.classList.add('active');
+                setTimeout(() => {
+                    item.style.pointerEvents = 'auto'; // Enable pointer events after the transition
+                }, 500); // 500ms delay (same as CSS transition duration)
+                activeItemFound = true;
+            } else {
+                item.classList.remove('active');
+                item.style.pointerEvents = 'none'; // Disable pointer events during the transition
+            }
         }
     });
 });
+
 
 
 
