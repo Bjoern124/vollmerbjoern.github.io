@@ -265,35 +265,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 200%; /* Make it twice as wide to allow for continuous scrolling */
-    animation: scrollSkills 10s linear infinite;
+    width: 200%;
+    position: relative;
 }
 
 .skill-img {
-    width: 80px; /* Adjust the size of the skill images */
+    width: 80px;
     height: 80px;
-    border-radius: 50%; /* Make the images round */
-    margin: 0 5px; /* Adjust the spacing between images */
-	margin-left: 80pt
+    border-radius: 50%;
+    margin: 0 5px;
+    margin-left: 80pt;
 }
 
 .skill-imgdark {
-    width: 80px; /* Adjust the size of the skill images */
+    width: 80px;
     height: 80px;
-    border-radius: 50%; /* Make the images round */
-    margin: 0 5px; /* Adjust the spacing between images */
-	background-color: #FFF;
-	margin-left: 80pt
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: #FFF;
+    margin-left: 80pt;
 }
 
-@keyframes scrollSkills {
-    0% {
-        transform: translateX(0px);
-    }
-    100% {
-        transform: translateX(-1000px);
-    }
-}
 
 
 
@@ -1237,6 +1229,24 @@ document.getElementById('hamburger').addEventListener('click', toggleMenu);
                 }
             });
         });
+		document.addEventListener('DOMContentLoaded', function() {
+    const skillsWrapper = document.querySelector('.skills-wrapper');
+    const skillImgs = document.querySelectorAll('.skill-img, .skill-imgdark');
+    
+    let wrapperWidth = skillsWrapper.scrollWidth / 2; // Half of the wrapper's width to simulate the looping
+    let currentPosition = 0;
+
+    function scrollSkills() {
+        currentPosition -= 1; // Adjust the scrolling speed by changing this value
+        if (currentPosition <= -wrapperWidth) {
+            currentPosition = 0; // Reset position to create a seamless loop
+        }
+        skillsWrapper.style.transform = `translateX(${currentPosition}px)`;
+        requestAnimationFrame(scrollSkills);
+    }
+
+    scrollSkills();
+});
     </script>
 </body>
 </html>
